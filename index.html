@@ -120,7 +120,7 @@
 
   function result() {
     let solve =
-      weight.value.trim() / (height.value.trim() * height.value.trim());
+      +weight.value.trim() / (+height.value.trim() * +height.value.trim());
     console.log(solve);
 
     if (!age.value.trim() || !height.value.trim() || !weight.value.trim()) {
