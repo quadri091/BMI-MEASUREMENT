@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      body {
+        background: linear-gradient(to right, #e0eafc, #cfdef3);
+        padding: 50px;
+      }
+      .container {
+        width: 500px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        box-shadow: 0 0px 55px rgba(0, 0, 0, 0.1), 0 0px 35px rgba(0, 0, 0, 0.1),
+          0 0px 15px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        position: absolute;
+        z-index: 1;
+        top: 6px;
+        padding: 0px 8px;
+        left: 5px;
+        font-size: 17px;
+        font-weight: 600;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        background-color: white;
+      }
+      .input-container {
+        position: relative;
+      }
+      section {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      @media (max-width: 570px) {
+        .container {
+          width: 320px;
+        }
+        body {
+          padding: 50px 0px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <section>
+        <div class="input-container">
+          <input
+            onclick="float1()"
+            class="form-control"
+            type="number"
+            id="age"
+          />
+          <label id="label1">Age</label>
+        </div>
+        <div class="input-container">
+          <input
+            onclick="float2()"
+            class="form-control"
+            type="number"
+            id="weight"
+          />
+          <label id="label2">Weight</label>
+        </div>
+        <div class="input-container">
+          <input
+            onclick="float3()"
+            class="form-control"
+            type="number"
+            id="height"
+          />
+          <label id="label3">Height</label>
+        </div>
+      </section>
+
+      <button class="btn btn-primary form-control" onclick="result()">
+        Result
+      </button>
+
+      <div id="show"></div>
+    </main>
+  </body>
+</html>
+
+<script>
+  let age = document.getElementById("age");
+  let weight = document.getElementById("weight");
+  let height = document.getElementById("height");
+  let label1 = document.getElementById("label1");
+  let label2 = document.getElementById("label2");
+  let label3 = document.getElementById("label3");
+  let show = document.getElementById("show");
+
+  function result() {
+    let solve =
+      weight.value.trim() / (height.value.trim() * height.value.trim());
+    console.log(solve);
+
+    if (!age.value.trim() || !height.value.trim() || !weight.value.trim()) {
+      alert("All Fields Are Mandatory");
+    } else if (age.value.trim() < 20) {
+      alert("You are too young to take a test");
+    } else {
+      if (solve < 18.5) {
+        show.innerHTML = `<h4 class="fw-bold text-primary text-center"><i class="text-danger">Underweight:</i> BMI is less than 18.5</h4>`;
+        return;
+      }
+      if (solve < 24.9) {
+        show.innerHTML = `<h4 class="fw-bold text-primary text-center"><i>Normal Weight:</i> BMI is 18.5 to 24.9</h4>`;
+        return;
+      }
+      if (solve < 29.9) {
+        show.innerHTML = `<h4 class="fw-bold text-primary text-center"><i class="text-warning">Overweight:</i> BMI is 25 to 29.9</h4>`;
+        return;
+      }
+      show.innerHTML = `<h4 class="fw-bold text-primary text-center"><i class="text-danger">Obese:</i> BMI is 30 or more</h4>`;
+    }
+  }
+
+  function float1() {
+    label1.style.transform = "scale(0.65)";
+    label1.style.top = "-14px";
+    label1.style.color = "#4285f4";
+  }
+  function float2() {
+    label2.style.transform = "scale(0.65)";
+    label2.style.top = "-14px";
+    label2.style.color = "#4285f4";
+  }
+  function float3() {
+    label3.style.transform = "scale(0.65)";
+    label3.style.top = "-14px";
+    label3.style.color = "#4285f4";
+  }
+</script>
